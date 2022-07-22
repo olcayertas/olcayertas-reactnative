@@ -6,7 +6,6 @@ import { ItemDetailScreenNavigationProps } from "../navigation/types";
 import { useSelector } from "react-redux";
 import LinearGradient from "react-native-linear-gradient";
 
-
 interface Props {
   id: string;
 }
@@ -20,7 +19,11 @@ const StoreItemView = (props: Props) => {
   const onPress = () => navigation.navigate("Detail", { product });
   return (
     <Pressable key={id} style={styles.container} onPress={onPress}>
-      <Image style={styles.image} source={{ uri }} />
+      <Image
+        style={styles.image}
+        source={{ uri }} cache={"force-cache"}
+        defaultSource={require("../assets/placeholder-image.png")}
+      />
       <LinearGradient style={{ height: 40 }} colors={["white", "gray"]} />
       <View style={styles.info}>
         <Text numberOfLines={1} style={styles.infoText}>{name}</Text>
